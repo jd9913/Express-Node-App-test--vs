@@ -1,0 +1,131 @@
+doctype html
+html
+  head
+   meta(charset="utf-8")
+
+    title Hospital Capacity Dashboard
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js")
+    link(rel="stylesheet" href="./stylesheets/main.css")
+  body
+    block content
+
+    header.jumbotron
+      h1.display-4.text-center.font-weight-bold COVID-19 Hospital Utilization Dashboard
+      h2.display-5.text-center.font-weight-bold Central AZ Region (Source: AZDHS-EMResource)
+      p#currentDay.lead.display-6
+    article
+      p#lastDataDate.lastDate.lead.text-center
+      .container(role="main")
+        .row
+          .col-sm-4.text-center
+            .panel.panel-default
+              h3.panel-title Emergency Department
+            .panel-content.text-center.dsNumber
+              p#covidEDNumber
+              p#EDPosPts
+                edpospts
+            .panel-footer
+              h4 COVID Positive Patients Seen in ED
+              //
+                <p class="threshold text-left">Max threshold: <span id='edMaxThreshold'class="threshold"></span></p>
+                <p class="threshold text-left">Min threshold: <span id='edMinThreshold'class="threshold"></span></p>
+          .col-sm-4.text-center
+            .panel.panel-default
+              h3.panel-title Admissions
+            .panel-content.text-center.dsNumber
+              p#covidAdmitNumber
+              p#COVIDpositiveAdmits
+                covidpositiveadmits
+            .panel-footer
+              h4 COVID Positive Admissions
+              //
+                <p class="threshold text-left">Max threshold: <span id='admitsMaxThreshold'class="threshold"></span></p>
+                <p class="threshold text-left">Min threshold: <span id='admitsMinThreshold'class="threshold"></span></p>
+          .col-sm-4.text-center
+            .panel.panel-default
+              h3.panel-title Inpatients
+            .panel-content.text-center.dsNumber
+              p#covidInptNumber
+              p#COVIDpositiveInpatients
+                covidpositiveinpatients
+            .panel-footer
+              h4 COVID Positive Inpatients
+              //
+                <p class="threshold text-left">Max threshold: <span id='inptMaxThreshold'class="threshold"></span></p>
+                <p class="threshold text-left">Min threshold: <span id='inptMinThreshold'class="threshold"></span></p>
+          //
+            <div class="col-sm-12 text-center">color of numbers is determined by set thresholds.  All threshold numbers can be changed
+            <span><boardpermission name="Edit">
+            <viewlink class="webeoc-link thresholdWord" type="link" name="thresholds-with-filter" target="tab">
+            <i class="icon-edit"></i>here</viewlink>
+            </boardpermission></span>
+            </div>
+          .container
+            .row
+              .col-sm-12.text-center
+                .panel.panel-default
+                  h3.panel-title COVID + Line Chart
+                .panel-content.text-center
+                  canvas#covidLine.chart
+                .panel-footer
+                  h4 COVID Positive Patients Line Chart
+                  p.threshold.text-left
+                    | Line graph data is shown filtered from date:
+                    span#lineDateFilter.threshold
+          //
+            <div class="col-sm-12 text-center">color of numbers is determined by set thresholds.</div>
+            </br>
+          .col-sm-4.text-center
+            .panel.panel-default
+              h3.panel-title Medical Surgical Beds
+            .panel-content.text-center
+              p#MedSurgNumAvail
+                medsurgnumavail
+              p#MedSurgInUseCovid
+                medsurginusecovid
+              p#MedSurgInUseOther
+                medsurginuseother
+              canvas#medSurgBeds.chart
+            .panel-footer
+              p.capacity.text-left
+                | Med/Surg Bed Capacity:
+                span#msCapacity.capacity
+          .col-sm-4.text-center
+            .panel.panel-default
+              h3.panel-title ICU Beds
+            .panel-content.text-center
+              p#ICUAdultAvail
+                icuadultavail
+              p#ICUAdultInUsePositive
+                icuadultinusepositive
+              p#ICUAdultInUseOther
+                icuadultinuseother
+              canvas#IcuBeds.chart
+            .panel-footer
+              p.capacity.text-left
+                | ICU Bed Capacity:
+                span#icuCapacity.capacity
+          .col-sm-4.text-center
+            .panel.panel-default
+              h3.panel-title  Ventilators
+            .panel-content.text-center
+              p#VentsAvail
+                ventsavail
+              p#ventInUsePos
+                ventinusepos
+              p#ventInUseOther
+                ventinuseother
+              canvas#vents.chart
+            .panel-footer
+              p.capacity.text-left
+                | Vent Bed Capacity:
+                span#ventCapacity.capacity
+    script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js")
+    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js")
+    script(src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js")
+    // <script src="./scripts/script.js"></script>
+    script(src="./scripts/script.js")
